@@ -1,8 +1,12 @@
 FROM nvidia/cuda
 
-# Install build deps :
-RUN apt-get update && apt-get install --no-install-recommends -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential wget ca-certificates gcc-5 g++-5 && apt-get clean 
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 1
+# Install ccminer deps :
+RUN apt-get update && apt-get install --no-install-recommends -y wget openssl libffi6 libgnutls30 libgssapi-krb5-2 libgssapi3-heimdal \
+    libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libidn11 libjansson4 libk5crypto3 \
+    libkeyutils1 libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libnettle6 libp11-kit0 libroken18-heimdal librtmp1 \
+    libsasl2-2 libsasl2-modules-db libsigsegv2 libsqlite3-0 libssl1.0.0 libtasn1-6 libwind0-heimdal ca-certificates && \
+    apt-get clean && rm -Rf /var/lib/apt/lists
+
 RUN mkdir /opt/ccminer
 RUN wget https://github.com/tpruvot/ccminer/archive/linux.tar.gz -qO - | tar --strip 1 -xzvC /opt/ccminer
 
@@ -19,4 +23,9 @@ RUN sha1sum -c zm.sha1
 RUN echo 'nvcc_ARCH += -gencode=arch=compute_61,code=\"sm_61,compute_61\"' >> Makefile.am
 
 # Build ccminer
-RUN ./build.sh
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential gcc-5 g++-5 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 1 && \
+    ./build.sh && \
+    apt-get autoremove -y --purge libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential gcc-5 g++-5 && \
+    apt-get clean && rm -Rf /var/lib/apt/lists
+
