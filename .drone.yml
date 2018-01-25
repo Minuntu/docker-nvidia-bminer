@@ -1,4 +1,4 @@
-pipeline
+pipeline:
   publish:
     image: plugins/docker
     repo: gboo/docker-nvidia
