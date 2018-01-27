@@ -1,7 +1,7 @@
 FROM nvidia/cuda
 
 # Install ccminer deps :
-RUN apt-get update && apt-get install --no-install-recommends -y wget openssl libffi6 libgnutls30 libgssapi-krb5-2 libgssapi3-heimdal \
+RUN apt-get update && apt-get install --no-install-recommends -y curl wget openssl libffi6 libgnutls30 libgssapi-krb5-2 libgssapi3-heimdal \
     libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libidn11 libjansson4 libk5crypto3 \
     libkeyutils1 libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libnettle6 libp11-kit0 libroken18-heimdal librtmp1 \
     libsasl2-2 libsasl2-modules-db libsigsegv2 libsqlite3-0 libssl1.0.0 libtasn1-6 libwind0-heimdal ca-certificates && \
