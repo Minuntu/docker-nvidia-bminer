@@ -2,7 +2,7 @@
 
 ## Contains
 
-- dstm equihash miner ( https://bitcointalk.org/index.php?topic=2021765.0 )
+- bminer equihash miner ( https://www.bminer.me/ )
 
 ## Requires
 
@@ -12,5 +12,5 @@
 ## Run
 
 ```
-docker run --name ccminer -p 3336:3336 --runtime=nvidia --rm minuntu/nvidia-dstm --telemetry 3336 --server ssl://my-pool.com --port 3335 --user address --pass x
+docker run --name bminer -p 3336:3336 --runtime=nvidia --rm minuntu/nvidia-bminer -uri stratum+ssl://t1ZBtpkUy1y1deYsNJnzdW4tk7HiJEcfUzr.worker%2Ffoo%40gmail.com:x@zec-eu1.nanopool.org:6633 -api 0.0.0.0:3336
 ```

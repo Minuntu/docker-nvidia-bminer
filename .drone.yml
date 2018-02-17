@@ -1,7 +1,7 @@
 pipeline:
   publish:
     image: plugins/docker
-    repo: minuntu/nvidia-dstm
+    repo: minuntu/nvidia-bminer
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
     when:

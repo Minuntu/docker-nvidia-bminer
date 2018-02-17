@@ -1,13 +1,22 @@
 FROM nvidia/cuda:9.0-runtime
 
-RUN mkdir /opt/dstm
+ENV BMINER_RELEASE bminer-v5.4.0-ae18e12-amd64.tar.xz
+ENV BMINER_SHA256  e292a0c1c45179d3dc9a18bf671beb10c2b106b37513cb2094958ef9f665c166
 
-# Default dir /opt/dstm
-WORKDIR /opt/dstm
+# Install ccminer deps :
+RUN apt-get update && apt-get install --no-install-recommends -y wget ca-certificates xz-utils && \
+    apt-get clean && rm -Rf /var/lib/apt/lists
 
-# Throw dstm : https://bitcointalk.org/index.php?topic=2021765.0
-ADD zm /opt/dstm/zm
-ADD zm.sha1 /opt/dstm/zm.sha1
-RUN sha1sum -c zm.sha1
+RUN mkdir /opt/bminer
 
-ENTRYPOINT /opt/dstm/zm
+# Default dir /opt/bminer
+WORKDIR /opt/bminer
+
+RUN echo ${BMINER_SHA256} ${BMINER_RELEASE} > ${BMINER_RELEASE}.sha256
+
+RUN wget -q https://www.bminercontent.com/releases/${BMINER_RELEASE} && \
+    sha256sum -c ${BMINER_RELEASE}.sha256 && \
+    tar --strip=1 -xJvf ${BMINER_RELEASE} && \
+    rm ${BMINER_RELEASE} ${BMINER_RELEASE}.sha256
+
+ENTRYPOINT /opt/bminer/bminer
