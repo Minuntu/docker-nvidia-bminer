@@ -12,5 +12,5 @@
 ## Run
 
 ```
-docker run --name ccminer --runtime=nvidia --rm minuntu/docker-nvidia-dstm
+docker run --name ccminer -p 3336:3336 --runtime=nvidia --rm minuntu/docker-nvidia-dstm --telemetry 3336 --server ssl://my-pool.com --port 3335 --user address --pass x
 ```
