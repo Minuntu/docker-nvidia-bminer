@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda:9.0-runtime
 
 RUN mkdir /opt/dstm
 
