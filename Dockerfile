@@ -19,4 +19,4 @@ RUN wget -q https://www.bminercontent.com/releases/${BMINER_RELEASE} && \
     tar --strip=1 -xJvf ${BMINER_RELEASE} && \
     rm ${BMINER_RELEASE} ${BMINER_RELEASE}.sha256
 
-ENTRYPOINT /opt/bminer/bminer
+ENTRYPOINT [ "/opt/bminer/bminer" ]
