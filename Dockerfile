@@ -1,7 +1,7 @@
 FROM nvidia/cuda:9.0-runtime
 
-ENV BMINER_RELEASE bminer-v5.4.0-ae18e12-amd64.tar.xz
-ENV BMINER_SHA256  e292a0c1c45179d3dc9a18bf671beb10c2b106b37513cb2094958ef9f665c166
+ENV BMINER_RELEASE bminer-v6.0.0-d111154-amd64.tar.xz
+ENV BMINER_SHA256  b726bca5cd6ebe9ea921a703f920987670da24a91a7a84d3fb558eb71313ede9
 
 # Install ccminer deps :
 RUN apt-get update && apt-get install --no-install-recommends -y wget ca-certificates xz-utils && \
